@@ -202,3 +202,61 @@ cinema/
 ├── Dockerfile              ← NUEVO
 ├── pom.xml
 └── README.md               ← NUEVO
+
+## 🌿 Ramas del repositorio
+
+| Rama | Ambiente | Perfil activo |
+|---|---|---|
+| `main` | Producción | `prod` |
+| `staging` | Pre-producción | `prod` |
+| `qa` | Pruebas | `qa` |
+| `develop` | Desarrollo | `dev` |
+
+---
+
+## 🧪 Datos de prueba Postman
+
+### 🎥 Crear película — POST /api/v1/movies
+```json
+{
+  "title": "Oppenheimer",
+  "genre": "Drama",
+  "director": "Christopher Nolan",
+  "releaseYear": 2023,
+  "durationMin": 180,
+  "stock": 3
+}
+```
+
+### 👤 Crear cliente — POST /api/v1/clients
+```json
+{
+  "firstName": "Juan",
+  "lastName": "Pérez",
+  "email": "juan.perez@email.com",
+  "phone": "3001234567"
+}
+```
+
+### 🎭 Crear sala — POST /api/v1/screening-rooms
+```json
+{
+  "roomName": "Sala 6 - VIP",
+  "capacity": 40,
+  "roomType": "VIP"
+}
+```
+
+### 📋 Crear renta — POST /api/v1/rentals
+```json
+{
+  "clientId": "c3d4e5f6-0002-0002-0002-000000000001",
+  "movieId": "b2c3d4e5-0001-0001-0001-000000000001",
+  "roomId": "a1b2c3d4-0003-0003-0003-000000000001",
+  "rentalDate": "2025-04-25",
+  "returnDate": null,
+  "status": "active"
+}
+```
+
+---
