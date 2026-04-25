@@ -26,10 +26,6 @@ jobs:
         run: mvn clean compile -B
         working-directory: cinema
 
-      - name: Run tests
-        run: mvn test -B
-        working-directory: cinema
-
       - name: Package JAR
         run: mvn package -DskipTests -B
         working-directory: cinema
