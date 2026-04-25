@@ -22,6 +22,7 @@ Permite administrar películas, clientes, salas de proyección y rentas.
 
 ## 📁 Estructura del proyecto
 
+```
 src/main/java/com/sena/cinema/
 ├── config/          → Configuración CORS y Swagger
 ├── controller/      → Endpoints REST (capa de entrada)
@@ -34,13 +35,13 @@ src/main/java/com/sena/cinema/
 │   └── response/    → Datos que devuelve la API
 ├── mapper/          → Convierte entre entidades y DTOs
 └── exception/       → Manejo global de errores
+```
 
 ---
 
 ## 🗃️ Entidades del sistema
 
 ### 🎥 Movie (Película)
-Representa una película disponible para renta.
 - `movie_id` → Identificador único
 - `title` → Título de la película
 - `genre` → Género (acción, drama, etc.)
@@ -50,7 +51,6 @@ Representa una película disponible para renta.
 - `stock` → Unidades disponibles para renta
 
 ### 👤 Client (Cliente)
-Persona registrada que puede realizar rentas.
 - `client_id` → Identificador único
 - `first_name` → Nombre
 - `last_name` → Apellido
@@ -59,14 +59,12 @@ Persona registrada que puede realizar rentas.
 - `registered_at` → Fecha de registro
 
 ### 🎭 ScreeningRoom (Sala de proyección)
-Sala física del cine donde se proyecta la película.
 - `room_id` → Identificador único
 - `room_name` → Nombre de la sala
 - `capacity` → Capacidad de personas
 - `room_type` → Tipo: standard, 3D, IMAX, VIP
 
 ### 📋 Rental (Renta)
-Registro de una película rentada por un cliente en una sala.
 - `rental_id` → Identificador único
 - `client_id` → Cliente que renta
 - `movie_id` → Película rentada
@@ -117,6 +115,17 @@ Registro de una película rentada por un cliente en una sala.
 
 ---
 
+## 🌿 Ramas del repositorio
+
+| Rama | Ambiente | Perfil activo |
+|---|---|---|
+| `main` | Producción | `staging` |
+| `staging` | Pre-producción | `staging` |
+| `qa` | Pruebas | `qa` |
+| `develop` | Desarrollo | `develop` |
+
+---
+
 ## 🚀 Cómo ejecutar el proyecto
 
 ### Prerrequisitos
@@ -127,22 +136,17 @@ Registro de una película rentada por un cliente en una sala.
 
 ### Paso 1 — Levantar la base de datos
 ```bash
-# Desde el repositorio de base de datos
 docker-compose up -d
 ```
 
 ### Paso 2 — Ejecutar la API localmente
 ```bash
-# Desde la raíz del proyecto
 mvn spring-boot:run
 ```
 
 ### Paso 3 — O ejecutar con Docker
 ```bash
-# Construir la imagen
 docker build -t cinema-api .
-
-# Ejecutar el contenedor
 docker run -p 8080:8080 cinema-api
 ```
 
@@ -151,66 +155,6 @@ docker run -p 8080:8080 cinema-api
 ## 📖 Documentación Swagger
 
 Con la API corriendo, accede a: http://localhost:8080/swagger-ui.html
-
-Desde ahí puedes ver y probar todos los endpoints sin necesidad de Postman.
-
----
-
-## 🔑 Glosario de términos técnicos
-
-| Término | Significado |
-|---|---|
-| API | Application Programming Interface — Interfaz para comunicar sistemas |
-| REST | Estilo de arquitectura para APIs usando HTTP |
-| Endpoint | Punto de acceso de la API (una URL específica) |
-| CRUD | Create, Read, Update, Delete — operaciones básicas |
-| JPA | Java Persistence API — estándar para manejar BD en Java |
-| DTO | Data Transfer Object — objeto que transporta datos entre capas |
-| Schema | Esquema — agrupación lógica de tablas en la BD |
-| UUID | Identificador único universal |
-| JWT | JSON Web Token — para autenticación (no implementado aún) |
-| CORS | Cross-Origin Resource Sharing — permite peticiones desde el frontend |
-| Stock | Cantidad de copias disponibles de una película |
-| Rental | Renta — acción de tomar prestada una película |
-
----
-
-## ⚙️ CI/CD con GitHub Actions
-
-El proyecto incluye un workflow automático en `.github/workflows/ci.yml` que se ejecuta en cada push y pull request hacia `main`:
-
-1. Compila el proyecto con Maven
-2. Ejecuta los tests automáticos
-3. Empaqueta el JAR
-4. Construye la imagen Docker
-
-Esto garantiza que el código siempre compila correctamente antes de integrarse.
-
----
-
-## 👨‍💻 Autor
-
-Desarrollado como proyecto académico — SENA  
-Curso: Desarrollo de Software
-
-📂 Estructura final de archivos a agregar
-cinema/
-├── .github/
-│   └── workflows/
-│       └── ci.yml          ← NUEVO
-├── src/...
-├── Dockerfile              ← NUEVO
-├── pom.xml
-└── README.md               ← NUEVO
-
-## 🌿 Ramas del repositorio
-
-| Rama | Ambiente | Perfil activo |
-|---|---|---|
-| `main` | Producción | `prod` |
-| `staging` | Pre-producción | `prod` |
-| `qa` | Pruebas | `qa` |
-| `develop` | Desarrollo | `dev` |
 
 ---
 
@@ -250,9 +194,9 @@ cinema/
 ### 📋 Crear renta — POST /api/v1/rentals
 ```json
 {
-  "clientId": "c3d4e5f6-0002-0002-0002-000000000001",
-  "movieId": "b2c3d4e5-0001-0001-0001-000000000001",
-  "roomId": "a1b2c3d4-0003-0003-0003-000000000001",
+  "clientId": "UUID_DEL_CLIENT",
+  "movieId": "UUID_DEL_MOVIE",
+  "roomId": "UUID_DEL_ROOM",
   "rentalDate": "2025-04-25",
   "returnDate": null,
   "status": "active"
@@ -260,3 +204,38 @@ cinema/
 ```
 
 ---
+
+## 🔑 Glosario de términos técnicos
+
+| Término | Significado |
+|---|---|
+| API | Application Programming Interface — Interfaz para comunicar sistemas |
+| REST | Estilo de arquitectura para APIs usando HTTP |
+| Endpoint | Punto de acceso de la API (una URL específica) |
+| CRUD | Create, Read, Update, Delete — operaciones básicas |
+| JPA | Java Persistence API — estándar para manejar BD en Java |
+| DTO | Data Transfer Object — objeto que transporta datos entre capas |
+| Schema | Esquema — agrupación lógica de tablas en la BD |
+| UUID | Identificador único universal |
+| CORS | Cross-Origin Resource Sharing — permite peticiones desde el frontend |
+| Stock | Cantidad de copias disponibles de una película |
+| Rental | Renta — acción de tomar prestada una película |
+| Profile | Perfil — configuración activa según el ambiente |
+
+---
+
+## ⚙️ CI/CD con GitHub Actions
+
+El proyecto incluye un workflow automático en `.github/workflows/ci.yml` que se ejecuta en cada push y pull request hacia `main`:
+
+1. Compila el proyecto con Maven
+2. Ejecuta los tests automáticos
+3. Empaqueta el JAR
+4. Construye la imagen Docker
+
+---
+
+## 👨‍💻 Autor
+
+Aprendiz: Laura Vanessa Perez Perdomo
+Tecnologo: Analisis y Desarrollo de Software
