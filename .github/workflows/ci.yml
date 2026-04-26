@@ -31,8 +31,7 @@ jobs:
         working-directory: cinema
 
       - name: Verify JAR was created
-        run: ls -lh target/*.jar
-        working-directory: cinema
+        run: ls -lh cinema/target/*.jar
 
       - name: Build Docker image
         run: docker build -t cinema-api:latest .
