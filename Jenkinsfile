@@ -23,12 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Validar autenticacion') {
-            steps {
-                echo 'ERROR: Falla critica en modulo de autenticacion'
-                error('Error intencional en autenticacion - feature/auth-error')
-            }
-        }
+  
     }
     post {
         success {
