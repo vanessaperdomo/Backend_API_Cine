@@ -23,17 +23,23 @@ pipeline {
                 }
             }
         }
+        stage('Validar autenticacion') {
+            steps {
+                echo 'ERROR: Falla critica en modulo de autenticacion'
+                error('Error intencional en autenticacion - feature/auth-error')
+            }
+        }
     }
     post {
         success {
             mail to: 'p.laurav2@gmail.com',
             subject: 'Pipeline EXITOSO',
-            body: 'La compilación y pruebas finalizaron correctamente.'
+            body: 'La compilacion y pruebas finalizaron correctamente.'
         }
         failure {
             mail to: 'p.laurav2@gmail.com',
-            subject: 'Pipeline FALLÓ',
-            body: 'La compilación o pruebas presentaron errores.'
+            subject: 'Pipeline FALLO',
+            body: 'La compilacion o pruebas presentaron errores.'
         }
     }
 }
